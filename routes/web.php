@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\WeatherController;
 $namespace = 'App\Http\Controllers';
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,22 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('create', [DeviceController::class, 'create']);
     Route::get('show', [DeviceController::class, 'index']);
 });
+//Route::view('weather','weather');
+
+/*Route::get('weather', function () {
+   
+    $location='Rawalpindi';
+    $apiKey='1e55dd07527577d82b9c759099721129';
+    $response=Http::withOptions([
+        'verify' => false,
+    ])->get("https://api.openweathermap.org/data/2.5/weather?q={$location}&appid={$apiKey}");
+    dump($response->json());
+   
+    return view('weather',
+    [ 
+        'currentweather' =>$response->json(),
+
+    ]);
+});*/
+Route::get('weather', [WeatherController::class, 'weatherData']);
+Route::post('/forecast', [WeatherController::class, 'searchcity']);

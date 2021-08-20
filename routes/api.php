@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WeatherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('details/{device}', [DeviceController::class, 'details']);
     Route::get('edit/{device}', [DeviceController::class, 'edit']);
     Route::get('delete/{device}', [DeviceController::class, 'delete']);
+    //Route::post('/forecast', [WeatherController::class, 'searchcity']);
 });
 
 Route::post('login', [UserController::class, 'index']);
+//Route::post('/forecast', [WeatherController::class, 'searchcity']);
